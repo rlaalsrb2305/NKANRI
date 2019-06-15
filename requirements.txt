@@ -1,4 +1,4 @@
 discord.py==0.16.12
 Request==2018.11.20
-bs4==4.6.3
+beautifulsoup4==4.6.3
 openpyxl==2.5.11
