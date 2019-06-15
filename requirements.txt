@@ -1,0 +1,7 @@
+discord.py==0.16.12
+openpyxl.py==2.5.11
+urlopen.py==
+Request.py==2018.11.20
+urllib.py==1.24.1
+urllib.request.py==1.24.1
+bs4.py==4.6.3
