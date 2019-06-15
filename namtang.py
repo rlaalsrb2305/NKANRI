@@ -3,6 +3,7 @@ import openpyxl
 import request
 import bs4
 
+
 client = discord.Client()
 
 
@@ -50,8 +51,24 @@ async def on_message(message):
         embed.add_field(name='!학습', value='내래 이몸을 가르치라우 !학습 [호출단어] [말할단어]', inline=False)
         embed.add_field(name='!기억', value='내래 가르친걸 기억한다우 !기억 [호출단어]', inline=False)
         embed.add_field(name='!역할설정', value='내래 역할을 준다우 !역할설정 [ID] [역할이름]', inline=False)
+        embed.add_field(name='!하는일', value='내래 밥값을 하는지 보여준다우', inline=False)
 
         await client.send_message(channel, embed=embed)
+
+    if message.content.startswith("!하는일"):
+        channel = message.channel
+        embed = discord.Embed(
+            title='하는일',
+            description='내래 밥값한다우',
+            colour=discord.Colour.blue()
+        )
+
+        embed.set_footer(text='이상이라우')
+        embed.add_field(name='린민 지급', value='신입들에게 린민역할을 지급한다우', inline=False)
+        embed.add_field(name='봇', value='이건 모르겠다우 시바꺼', inline=False)
+
+        await client.send_message(channel, embed=embed)
+
 
 
     if message.content.startswith("!학습"):
@@ -83,5 +100,9 @@ async def on_message(message):
                 role = i
                 break
         await client.add_roles(member, role)
+
+
+
+
 
 client.run("NDI0Nzc3MTEwOTE4Mzk3OTU1.XQUjQw.lQZSAtZQI-P_3Ffcf2QQ-cW6KXQ")
