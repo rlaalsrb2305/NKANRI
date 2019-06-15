@@ -66,7 +66,7 @@ async def on_message(message):
                 break
         file.save("학습.xlsx")
 
-    if message.content.startswith("!기억"):
+    if message.content.startswith("!"):
         file = openpyxl.load_workbook("학습.xlsx")
         sheet = file.active
         memory = message.content.split(" ")
