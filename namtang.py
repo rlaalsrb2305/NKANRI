@@ -1,8 +1,6 @@
 import discord
 import openpyxl
-from urllib.request import urlopen, Request
-import urllib
-import urllib.request
+import request
 import bs4
 import os
 
