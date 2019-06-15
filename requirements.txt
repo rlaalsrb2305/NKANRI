@@ -1,5 +1,5 @@
 discord.py==0.16.12
-openpyxl.py==2.5.11
+openpyxl.py
 Request.py==2018.11.20
 urllib.py==1.24.1
 urllib.request.py==1.24.1
