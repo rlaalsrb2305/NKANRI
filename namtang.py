@@ -4,12 +4,10 @@ from urllib.request import urlopen, Request
 import urllib
 import urllib.request
 import bs4
-
+import os
 
 client = discord.Client()
 
-
-token = "NDI0Nzc3MTEwOTE4Mzk3OTU1.DaJq0Q.JhqtTPi7OkkdfDjp6l38mlypm4I"
 
 
 @client.event
@@ -89,5 +87,5 @@ async def on_message(message):
                 break
         await client.add_roles(member, role)
 
-
-client.run(token)
+access.token = os.environ["BOT_TOKEN"]
+client.run(access.token)
