@@ -55,6 +55,22 @@ async def on_message(message):
 
         await client.send_message(channel, embed=embed)
 
+    if message.content.startswith("!정보"):
+        channel = message.channel
+        embed = discord.Embed(
+            title='인-포마이숀',
+            description='',
+            colour=discord.Colour.blue()
+        )
+
+        embed.set_footer(text='이상이라우')
+        embed.add_field(name='제작', value='제작자 : 시바 존나멋진 김민규(ㅈ한민국 기준 16세)\n 마지막 패치 : 갱신귀찮아서 안씀 ㅅㄱ\n 제작 이유 : 위대한 조선 민주주의 노휘빈 공화국의 입주자를 받기 위해서', inline=False)
+        embed.add_field(name='제작된 날', value='서기 2019년 6월 15일 11시경', inline=False)
+        embed.add_field(name='고위간부', value='수령 : 노휘빈\n군 : 김애용\n 원로 : 김민규\n친족 : 대현', inline=False)
+        embed.add_field(name='추가사항', value='빠끄!', inline=False)
+
+        await client.send_message(channel, embed=embed)
+
     if message.content.startswith("!하는일"):
         channel = message.channel
         embed = discord.Embed(
@@ -100,7 +116,7 @@ async def on_message(message):
                 role = i
                 break
         await client.add_roles(member, role)
-   
+
 
 
 
