@@ -64,6 +64,7 @@ async def on_message(message):
         embed.add_field(name='!정보', value='인-포마이숀을 보여주겠디', inline=False)
         embed.add_field(name='!경고', value='경고를 주겠디 !경고 [ID]', inline=False)
         embed.add_field(name='!확인', value='경고 횟수를 확인해주겠디 !확인 [ID]', inline=False)
+        embed.add_field(name='!리셋', value='경고 횟수를 초기화해주겠디 !리셋 [ID]', inline=False)
         embed.set_image(url="https://img3.yna.co.kr/photo/yna/YH/2011/12/23/PYH2011122304620001300_P2.jpg")
 
         await client.send_message(channel, embed=embed)
