@@ -30,6 +30,15 @@ async def on_member_join(member):
             role = i
             break
     await client.add_roles(member, role)
+    fmt = '{0.mention} 동무가 월북했디 모두 축하해주라우!'
+    channel = member.server.get_channel("589619364542808065")
+    await client.send_message(channel, fmt.format(member, member.server))
+
+@client.event
+async def on_member_remove(member):
+    channel = member.server.get_channel("589619364542808065")
+    fmt = '{0.mention} 동무가 탈북했다우 간나새끼..'
+    await client.send_message(channel, fmt.format(member, member.server))
 
 @client.event
 async def on_message(message):
@@ -90,7 +99,6 @@ async def on_message(message):
         await client.send_message(channel, embed=embed)
 
 
-
     if message.content.startswith("!학습"):
         file = openpyxl.load_workbook('학습.xlsx')
         sheet = file.active
@@ -120,7 +128,6 @@ async def on_message(message):
                 role = i
                 break
         await client.add_roles(member, role)
-
 
 
 
