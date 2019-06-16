@@ -52,6 +52,7 @@ async def on_message(message):
         embed.add_field(name='!기억', value='내래 가르친걸 기억한다우 !기억 [호출단어]', inline=False)
         embed.add_field(name='!역할설정', value='내래 역할을 준다우 !역할설정 [ID] [역할이름]', inline=False)
         embed.add_field(name='!하는일', value='내래 밥값을 하는지 보여준다우', inline=False)
+        embed.add_field(name='!정보', value='인-포마이숀을 보여주겠디', inline=False)
 
         await client.send_message(channel, embed=embed)
 
