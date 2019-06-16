@@ -53,6 +53,7 @@ async def on_message(message):
         embed.add_field(name='!역할설정', value='내래 역할을 준다우 !역할설정 [ID] [역할이름]', inline=False)
         embed.add_field(name='!하는일', value='내래 밥값을 하는지 보여준다우', inline=False)
         embed.add_field(name='!정보', value='인-포마이숀을 보여주겠디', inline=False)
+        embed.set_image(url="https://img3.yna.co.kr/photo/yna/YH/2011/12/23/PYH2011122304620001300_P2.jpg")
 
         await client.send_message(channel, embed=embed)
 
@@ -67,8 +68,9 @@ async def on_message(message):
         embed.set_footer(text='이상이라우')
         embed.add_field(name='제작', value='제작자 : 시바 존나멋진 김민규(ㅈ한민국 기준 16세)\n 마지막 패치 : 갱신귀찮아서 안씀 ㅅㄱ\n 제작 이유 : 위대한 조선 민주주의 노휘빈 공화국의 입주자를 받기 위해서', inline=False)
         embed.add_field(name='제작된 날', value='서기 2019년 6월 15일 11시경', inline=False)
-        embed.add_field(name='고위간부', value='수령 : 노휘빈\n군 : 김애용\n 원로 : 김민규\n친족 : 대현', inline=False)
-        embed.add_field(name='추가사항', value='빠끄!', inline=False)
+        embed.add_field(name='고위간부', value='수령 : 노휘빈\n군 : 김애용\n 원로 : 김민규\n 친족:대현', inline=False)
+        embed.add_field(name='!하는일', value='내래 밥값을 하는지 보여준다우', inline=False)
+        embed.set_image(url="https://img3.yna.co.kr/photo/yna/YH/2011/12/23/PYH2011122304620001300_P2.jpg")
 
         await client.send_message(channel, embed=embed)
 
@@ -83,6 +85,7 @@ async def on_message(message):
         embed.set_footer(text='이상이라우')
         embed.add_field(name='린민 지급', value='신입들에게 린민역할을 지급한다우', inline=False)
         embed.add_field(name='봇', value='이건 모르겠다우 시바꺼', inline=False)
+        embed.set_image(url="https://img3.yna.co.kr/photo/yna/YH/2011/12/23/PYH2011122304620001300_P2.jpg")
 
         await client.send_message(channel, embed=embed)
 
