@@ -130,6 +130,21 @@ async def on_message(message):
                 break
         await client.add_roles(member, role)
 
+    if message.content.startswith("!경고"):
+        memid = message.content.split(" ")
+        file = openpyxl.load_workbook("경고.xlsx")
+        sheet = file.active
+        for i in range(1, 31):
+            if str(sheet["A" + str(i)].value) == str(memid[1]):
+                sheet["B" + str(i)].value = int(sheet["B" + str(i)].value) + 1
+                break
+            if str(sheet["A" + str(i)].value) == "-":
+                sheet["A" + str(i)].value = str(memid[1])
+                sheet["B" + str(i)].value = 1
+                break
+        file.save("경고.xlsx")
+        await client.send_message(message.channel, "경고를 받았디 주의하기 바란다 현재 누적경고 :" + str(sheet["B" + str(i)].value)+ "회")
+
 
 
 
