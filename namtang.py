@@ -94,6 +94,7 @@ async def on_message(message):
         embed.set_footer(text='이상이라우')
         embed.add_field(name='린민 지급', value='신입들에게 린민역할을 지급한다우', inline=False)
         embed.add_field(name='봇', value='이건 모르겠다우 시바꺼', inline=False)
+        embed.add_field(name='월북알림', value='월북, 탈북 정보를 알려준다우', inline=False)
         embed.set_image(url="https://img3.yna.co.kr/photo/yna/YH/2011/12/23/PYH2011122304620001300_P2.jpg")
 
         await client.send_message(channel, embed=embed)
