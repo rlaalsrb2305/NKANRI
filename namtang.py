@@ -62,6 +62,8 @@ async def on_message(message):
         embed.add_field(name='!역할설정', value='내래 역할을 준다우 !역할설정 [ID] [역할이름]', inline=False)
         embed.add_field(name='!하는일', value='내래 밥값을 하는지 보여준다우', inline=False)
         embed.add_field(name='!정보', value='인-포마이숀을 보여주겠디', inline=False)
+        embed.add_field(name='!경고', value='경고를 주겠디 !경고 [ID]', inline=False)
+        embed.add_field(name='!확인', value='경고 횟수를 확인해주겠디 !확인 [ID]', inline=False)
         embed.set_image(url="https://img3.yna.co.kr/photo/yna/YH/2011/12/23/PYH2011122304620001300_P2.jpg")
 
         await client.send_message(channel, embed=embed)
@@ -144,6 +146,28 @@ async def on_message(message):
                 break
         file.save("경고.xlsx")
         await client.send_message(message.channel, "경고를 받았디 주의하기 바란다 현재 누적경고 :" + str(sheet["B" + str(i)].value)+ "회")
+
+    if message.content.startswith("!확인"):
+        memid = message.content.split(" ")
+        file = openpyxl.load_workbook("경고.xlsx")
+        sheet = file.active
+        for i in range(1, 31):
+            for i in range(1, 31):
+                if str(sheet["A" + str(i)].value) == str(memid[1]):
+                    sheet["B" + str(i)].value = int(sheet["B" + str(i)].value) + 0
+                    break
+        await client.send_message(message.channel, "누적 경고횟수는" + str(sheet["B" + str(i)].value) + "회")
+
+    if message.content.startswith("!리셋"):
+        memid = message.content.split(" ")
+        file = openpyxl.load_workbook("경고.xlsx")
+        sheet = file.active
+        for i in range(1, 31):
+            if str(sheet["A" + str(i)].value) == str(memid[1]):
+                sheet["B" + str(i)].value = 0
+                break
+        file.save("경고.xlsx")
+        await client.send_message(message.channel, "초기화 완료디 누적경고횟수는" + str(sheet["B" + str(i)].value) + "회")
 
 
 
