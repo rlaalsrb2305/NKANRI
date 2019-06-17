@@ -20,7 +20,7 @@ async def on_ready():
     print("!명령어,!변태순위 입니다")
     print("===========")
 
-    await client.change_presence(game=discord.Game(name="위대한 수령동지를 위하여", type=1))
+    await client.change_presence(game=discord.Game(name="위대한 수령동지를 위하여 | !도움말", type=1))
 
 @client.event
 async def on_member_join(member):
