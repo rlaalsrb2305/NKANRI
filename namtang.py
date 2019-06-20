@@ -3,9 +3,7 @@ import openpyxl
 import request
 import bs4
 
-
 client = discord.Client()
-
 
 
 @client.event
@@ -20,7 +18,8 @@ async def on_ready():
     print("!명령어,!변태순위 입니다")
     print("===========")
 
-    await client.change_presence(game=discord.Game(name="위대한 수령동지를 위하여 | !도움말", type=1))
+    await client.change_presence(game=discord.Game(name="위대한 수령동지를 위하여", type=1))
+
 
 @client.event
 async def on_member_join(member):
@@ -34,11 +33,13 @@ async def on_member_join(member):
     channel = member.server.get_channel("589619364542808065")
     await client.send_message(channel, fmt.format(member, member.server))
 
+
 @client.event
 async def on_member_remove(member):
     channel = member.server.get_channel("589619364542808065")
     fmt = '{0.mention} 동무가 탈북했다우 간나새끼..'
     await client.send_message(channel, fmt.format(member, member.server))
+
 
 @client.event
 async def on_message(message):
@@ -47,6 +48,20 @@ async def on_message(message):
 
     id = message.author.id
     channel = message.channel
+
+    if message.content.startswith("!임시공지"):
+        channel = message.channel
+        embed = discord.Embed(
+            title='임시공지',
+            description='임시공지가 없습네다',
+            colour=discord.Colour.blue()
+        )
+
+        embed.set_footer(text='이상이라우')
+        embed.add_field(name='제목', value='임시공지가 없습네다', inline=False)
+        embed.set_image(url="https://img3.yna.co.kr/photo/yna/YH/2011/12/23/PYH2011122304620001300_P2.jpg")
+
+        await client.send_message(channel, embed=embed)
 
     if message.content.startswith("!도움말"):
         channel = message.channel
@@ -64,8 +79,71 @@ async def on_message(message):
         embed.add_field(name='!정보', value='인-포마이숀을 보여주겠디', inline=False)
         embed.add_field(name='!경고', value='경고를 주겠디 !경고 [ID]', inline=False)
         embed.add_field(name='!확인', value='경고 횟수를 확인해주겠디 !확인 [ID]', inline=False)
-        embed.add_field(name='!리셋', value='경고 횟수를 초기화해주겠디 !리셋 [ID]', inline=False)
+        embed.add_field(name='!움짤', value='움짤모음을 알려주겠디', inline=False)
         embed.set_image(url="https://img3.yna.co.kr/photo/yna/YH/2011/12/23/PYH2011122304620001300_P2.jpg")
+
+        await client.send_message(channel, embed=embed)
+
+    if message.content.startswith("!움짤"):
+        channel = message.channel
+        embed = discord.Embed(
+            title='움짤들',
+            colour=discord.Colour.blue()
+        )
+
+        embed.set_footer(text='이상이라우')
+        embed.add_field(name='!굿타임', value='좋은시간되세요 뺑뺑이', inline=False)
+        embed.add_field(name='!반작용', value='자살골짤', inline=False)
+        embed.add_field(name='!놀람', value='존나 놀라는짤', inline=False)
+        embed.add_field(name='!잉아쌀라말라이꿈', value='노코멘트', inline=False)
+
+        await client.send_message(channel, embed=embed)
+
+    if message.content.startswith("!굿타임"):
+        channel = message.channel
+        embed = discord.Embed(
+            title='',
+            description='',
+            colour=discord.Colour.blue()
+        )
+
+        embed.set_image(url="https://cdn.discordapp.com/emojis/579875968802619418.gif?v=1")
+
+        await client.send_message(channel, embed=embed)
+
+    if message.content.startswith("!반작용"):
+        channel = message.channel
+        embed = discord.Embed(
+            title='',
+            description='',
+            colour=discord.Colour.blue()
+        )
+
+        embed.set_image(url="https://cdn.discordapp.com/attachments/591252897430241284/591256228102012931/2eb30b699416ab7faec36216c123de16_UGwyBUUa3JR4ICi7TXOOU.gif")
+
+        await client.send_message(channel, embed=embed)
+
+    if message.content.startswith("!놀람"):
+        channel = message.channel
+        embed = discord.Embed(
+            title='',
+            description='',
+            colour=discord.Colour.blue()
+        )
+
+        embed.set_image(url="https://cdn.discordapp.com/attachments/591252897430241284/591256228651466771/C0E7B9F2_1.gif")
+
+        await client.send_message(channel, embed=embed)
+
+    if message.content.startswith("!잉아쌀라말라이꿈"):
+        channel = message.channel
+        embed = discord.Embed(
+            title='',
+            description='',
+            colour=discord.Colour.blue()
+        )
+
+        embed.set_image(url="https://cdn.discordapp.com/attachments/591252897430241284/591256618633789442/205b613e7255f18dc94966ac66ff1f94.gif")
 
         await client.send_message(channel, embed=embed)
 
@@ -78,7 +156,9 @@ async def on_message(message):
         )
 
         embed.set_footer(text='이상이라우')
-        embed.add_field(name='제작', value='제작자 : 시바 존나멋진 김민규(ㅈ한민국 기준 16세)\n 마지막 패치 : 갱신귀찮아서 안씀 ㅅㄱ\n 제작 이유 : 위대한 조선 민주주의 노휘빈 공화국의 입주자를 받기 위해서', inline=False)
+        embed.add_field(name='제작',
+                        value='제작자 : 시바 존나멋진 김민규(ㅈ한민국 기준 16세)\n 마지막 패치 : 갱신귀찮아서 안씀 ㅅㄱ\n 제작 이유 : 위대한 조선 민주주의 노휘빈 공화국의 입주자를 받기 위해서',
+                        inline=False)
         embed.add_field(name='제작된 날', value='서기 2019년 6월 15일 11시경', inline=False)
         embed.add_field(name='고위간부', value='수령 : 노휘빈\n군 : 김애용\n 원로 : 김민규\n 친족:대현', inline=False)
         embed.add_field(name='!하는일', value='내래 밥값을 하는지 보여준다우', inline=False)
@@ -102,7 +182,6 @@ async def on_message(message):
 
         await client.send_message(channel, embed=embed)
 
-
     if message.content.startswith("!학습"):
         file = openpyxl.load_workbook('학습.xlsx')
         sheet = file.active
@@ -123,6 +202,7 @@ async def on_message(message):
             if sheet["A" + str(i)].value == memory[1]:
                 await client.send_message(message.channel, sheet["B" + str(i)].value)
                 break
+
     if message.content.startswith("!역할설정"):
         role = ""
         rolename = message.content.split(" ")
@@ -141,12 +221,15 @@ async def on_message(message):
             if str(sheet["A" + str(i)].value) == str(memid[1]):
                 sheet["B" + str(i)].value = int(sheet["B" + str(i)].value) + 1
                 break
+            if sheet["B" + str(i)].value == 3:
+                await client.add_roles(author, 뮤트)
+                break
             if str(sheet["A" + str(i)].value) == "-":
                 sheet["A" + str(i)].value = str(memid[1])
                 sheet["B" + str(i)].value = 1
                 break
         file.save("경고.xlsx")
-        await client.send_message(message.channel, "경고를 받았디 주의하기 바란다 현재 누적경고 :" + str(sheet["B" + str(i)].value)+ "회")
+        await client.send_message(message.channel, "경고를 받았디 주의하기 바란다 현재 누적경고 :" + str(sheet["B" + str(i)].value) + "회")
 
     if message.content.startswith("!확인"):
         memid = message.content.split(" ")
@@ -169,8 +252,6 @@ async def on_message(message):
                 break
         file.save("경고.xlsx")
         await client.send_message(message.channel, "초기화 완료디 누적경고횟수는" + str(sheet["B" + str(i)].value) + "회")
-
-
 
 
 client.run("NDI0Nzc3MTEwOTE4Mzk3OTU1.XQUjQw.lQZSAtZQI-P_3Ffcf2QQ-cW6KXQ")
