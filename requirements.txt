@@ -2,3 +2,4 @@ discord.py==0.16.12
 Request==2018.11.20
 beautifulsoup4==4.6.3
 openpyxl==2.5.11
+datetime==4.3
