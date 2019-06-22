@@ -2,6 +2,8 @@ import discord
 import openpyxl
 import request
 import bs4
+import asyncio
+import datetime
 
 client = discord.Client()
 
@@ -33,13 +35,11 @@ async def on_member_join(member):
     channel = member.server.get_channel("589619364542808065")
     await client.send_message(channel, fmt.format(member, member.server))
 
-
 @client.event
 async def on_member_remove(member):
     channel = member.server.get_channel("589619364542808065")
     fmt = '{0.mention} 동무가 탈북했다우 간나새끼..'
     await client.send_message(channel, fmt.format(member, member.server))
-
 
 @client.event
 async def on_message(message):
@@ -80,6 +80,7 @@ async def on_message(message):
         embed.add_field(name='!경고', value='경고를 주겠디 !경고 [ID]', inline=False)
         embed.add_field(name='!확인', value='경고 횟수를 확인해주겠디 !확인 [ID]', inline=False)
         embed.add_field(name='!움짤', value='움짤모음을 알려주겠디', inline=False)
+        embed.add_field(name='!첩보요원', value='가입일, 닉네임등의 정보를 알려주겠디', inline=False)
         embed.set_image(url="https://img3.yna.co.kr/photo/yna/YH/2011/12/23/PYH2011122304620001300_P2.jpg")
 
         await client.send_message(channel, embed=embed)
@@ -98,6 +99,16 @@ async def on_message(message):
         embed.add_field(name='!잉아쌀라말라이꿈', value='노코멘트', inline=False)
 
         await client.send_message(channel, embed=embed)
+
+    if message.content.startswith("!첩보요원"):
+        date = datetime.datetime.utcfromtimestamp(((int(message.author.id) >> 22) + 1420070400000) / 1000)
+        embed = discord.Embed(color=0x00ff00)
+        embed.add_field(name="이름", value=message.author.name, inline=True)
+        embed.add_field(name="서버닉네임", value=message.author.display_name, inline=True)
+        embed.add_field(name="가입일", value=str(date.year) + "년" + str(date.month) + "월" + str(date.day) + "일" , inline=True)
+        embed.add_field(name="아이디", value=message.author.id, inline=True)
+        embed.set_thumbnail(url=message.author.avatar_url)
+        await client.send_message(message.channel, embed=embed)
 
     if message.content.startswith("!굿타임"):
         channel = message.channel
@@ -182,6 +193,7 @@ async def on_message(message):
 
         await client.send_message(channel, embed=embed)
 
+
     if message.content.startswith("!학습"):
         file = openpyxl.load_workbook('학습.xlsx')
         sheet = file.active
@@ -213,6 +225,7 @@ async def on_message(message):
                 break
         await client.add_roles(member, role)
 
+
     if message.content.startswith("!경고"):
         memid = message.content.split(" ")
         file = openpyxl.load_workbook("경고.xlsx")
@@ -236,10 +249,9 @@ async def on_message(message):
         file = openpyxl.load_workbook("경고.xlsx")
         sheet = file.active
         for i in range(1, 31):
-            for i in range(1, 31):
-                if str(sheet["A" + str(i)].value) == str(memid[1]):
-                    sheet["B" + str(i)].value = int(sheet["B" + str(i)].value) + 0
-                    break
+            if str(sheet["A" + str(i)].value) == str(memid[1]):
+                sheet["B" + str(i)].value = int(sheet["B" + str(i)].value) + 0
+                break
         await client.send_message(message.channel, "누적 경고횟수는" + str(sheet["B" + str(i)].value) + "회")
 
     if message.content.startswith("!리셋"):
@@ -252,6 +264,28 @@ async def on_message(message):
                 break
         file.save("경고.xlsx")
         await client.send_message(message.channel, "초기화 완료디 누적경고횟수는" + str(sheet["B" + str(i)].value) + "회")
+
+    if message.content.startswith("!출석"):
+        memid = message.author.id
+        file = openpyxl.load_workbook("출석.xlsx")
+        sheet = file.active
+        for i in range(1, 31):
+            if str(sheet["A" + str(i)].value) == str(memid[1]):
+                sheet["B" + str(i)].value = int(sheet["B" + str(i)].value) + 1
+                break
+            if str(sheet["A" + str(i)].value) == "-":
+                sheet["A" + str(i)].value = str(memid[1])
+                sheet["B" + str(i)].value = 1
+                break
+        file.save("출석.xlsx")
+        await client.send_message(message.channel, "출석이 확인되었디 " + memid + "의 현재 누적출석일수 :" + str(sheet["B" + str(i)].value) + "일")
+
+    if message.content.startswith("!정산"):
+        role = "명예린민"
+        member = message.author.id
+        await client.add_roles(member, "명예린민")
+        await client.send_message(message.channel, "출석횟수가 2회 누적되었으므로 명예린민을 지급했디")
+
 
 
 client.run("NDI0Nzc3MTEwOTE4Mzk3OTU1.XQUjQw.lQZSAtZQI-P_3Ffcf2QQ-cW6KXQ")
