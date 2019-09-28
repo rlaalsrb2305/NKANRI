@@ -32,12 +32,12 @@ async def on_member_join(member):
             break
     await client.add_roles(member, role)
     fmt = '{0.mention} 동무가 월북했디 모두 축하해주라우!'
-    channel = member.server.get_channel("589619364542808065")
+    channel = member.server.get_channel("625685144258478083")
     await client.send_message(channel, fmt.format(member, member.server))
 
 @client.event
 async def on_member_remove(member):
-    channel = member.server.get_channel("589619364542808065")
+    channel = member.server.get_channel("625685144258478083")
     fmt = '{0.mention} 동무가 탈북했다우 간나새끼..'
     await client.send_message(channel, fmt.format(member, member.server))
 
